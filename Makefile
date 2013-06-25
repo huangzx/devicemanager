@@ -16,7 +16,7 @@ install:
 	-install -d $(DESTDIR)$(PREFIX)/bin/ $(DESTDIR)$(LIBDIR) $(DESTDIR)$(PREFIX)/share \
 	$(DESTDIR)$(PREFIX)/share/dbus-1/system-services $(DESTDIR)/etc/dbus-1/system.d \
 	$(DESTDIR)$(PREFIX)/share/polkit-1/actions  $(DESTDIR)$(PREFIX)/share/pixmaps/ \
-	$(DESTDIR)$(PREFIX)/share/applications/
+	$(DESTDIR)$(PREFIX)/share/applications/ $(DESTDIR)/etc/
 	-cp -r src/dbus/com.startos.ydm.service $(DESTDIR)$(PREFIX)/share/dbus-1/system-services
 	-cp -r src/dbus/com.startos.ydm.conf $(DESTDIR)/etc/dbus-1/system.d
 	-cp -r src/dbus/com.startos.ydm.policy $(DESTDIR)$(PREFIX)/share/polkit-1/actions
@@ -30,6 +30,7 @@ install:
 	-cp -r src/bin/ydm.png $(DESTDIR)$(PREFIX)/share/pixmaps/
 	-install src/bin/ydm.desktop $(DESTDIR)$(PREFIX)/share/applications/
 	-install src/bin/ydms.desktop $(DESTDIR)$(PREFIX)/share/applications/
+	-cp src/config/devicemanager.conf $(DESTDIR)/etc/
 	+make -C src/core install
 	@echo "Makefile: ydm installed."
 
@@ -53,6 +54,3 @@ uninstall:
 clean:
 	find src/ -name "*.pyc" -exec rm {} \;
 	+make -C src/core clean
-	
-
-

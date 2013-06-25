@@ -20,7 +20,7 @@ DEFAULT_FONT_SIZE = 13
 DEFAULT_WIDTH = 900
 DEFAULT_HEIGHT = 666
 
-CONFIG = "/etc/yget.conf"
+CONFIG = "/etc/devicemanager.conf"
 DBUS_IFACE = 'com.startos.ydm'
 DBUS_PATH = '/com/startos/ydm'
 

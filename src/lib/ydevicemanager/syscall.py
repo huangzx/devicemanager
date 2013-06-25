@@ -288,13 +288,17 @@ def open_conf():
     try:
         data = readfile(CONFIG)
         for line in data.split('\n'):
-            path = re.match("YPPATH_URI=\"(.*)\"",line)
+            path = re.match("URI=\"(.*)\"",line)
             if path:
                 return path.group(1)
     except:
         print >> sys.stderr, "%s failed!" %CONFIG
 
-    return "http://pkg.startos.org/packages"
+    # Check StartOS version
+    if os.popen('lsb_release --release').readline().strip().split('.')[0] == '5':
+        return "http://pkg.startos.org/packages"
+    else:
+        return "http://pkg.startos.org/6.0/devicemanager"
     
 def cmd_down():
     '''cmd down'''

@@ -2,11 +2,20 @@
 
 import os
 
-print 'Preparing to install translation'
-podir = os.path.join (os.path.realpath ("."), "po")
-print podir
+podir = os.path.join(os.path.realpath("."), "po")
+cfg_dir = os.path.join(os.path.realpath("."), "src/config")
+
+if os.path.isdir(cfg_dir):
+    print "Creating devicemanager.conf"
+    cfg_file = os.path.join(cfg_dir, "devicemanager.conf")
+    with open(cfg_file, "w") as f:
+        # Check StartOS version
+        if os.popen('lsb_release --release').readline().strip().split('.')[0] == '5':
+            f.write('URI="http://pkg.startos.org/packages"')
+        else:
+            f.write('URI="http://pkg.startos.org/6.0/devicemanager"')
+
 if os.path.isdir (podir):
-	print 'installing translations'
 	buildcmd = "msgfmt -o src/share/locale/%s/LC_MESSAGES/%s.mo po/%s.po"
 	
 	for name in os.listdir (podir):		
@@ -18,6 +27,3 @@ if os.path.isdir (podir):
 			if not os.path.isdir ("src/share/locale/%s/LC_MESSAGES" % dname):
 				os.makedirs ("src/share/locale/%s/LC_MESSAGES" % dname)
 			os.system (buildcmd % (dname,name.replace('-'+dname,''), name))
-			
-				
-
