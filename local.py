@@ -11,9 +11,9 @@ if os.path.isdir(cfg_dir):
     with open(cfg_file, "w") as f:
         # Check StartOS version
         if os.popen('lsb_release --release').readline().strip().split('.')[0] == '5':
-            f.write('URI="http://pkg.startos.org/packages"')
+            f.write('URI="http://pkg.startos.org/startos/5.0"')
         else:
-            f.write('URI="http://pkg.startos.org/6.0/devicemanager"')
+            f.write('URI="http://pkg.startos.org/startos/6.0/devicemanager"')
 
 if os.path.isdir (podir):
 	buildcmd = "msgfmt -o src/share/locale/%s/LC_MESSAGES/%s.mo po/%s.po"

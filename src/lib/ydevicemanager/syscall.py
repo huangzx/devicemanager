@@ -296,9 +296,9 @@ def open_conf():
 
     # Check StartOS version
     if os.popen('lsb_release --release').readline().strip().split('.')[0] == '5':
-        return "http://pkg.startos.org/packages"
+        return "http://pkg.startos.org/startos/5.0"
     else:
-        return "http://pkg.startos.org/6.0/devicemanager"
+        return "http://pkg.startos.org/startos/6.0/devicemanager"
     
 def cmd_down():
     '''cmd down'''
